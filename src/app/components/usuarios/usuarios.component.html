@@ -1,7 +1,7 @@
 <div class="container-fluid mt-4">
     <h2>Usuarios</h2>
     <div class="d-flex justify-content-between mb-3">
-        <button class="btn btn-success" (click)="toggleForm()"> 
+        <button class="btn btn-outline-secondary" (click)="toggleForm()"> 
             <i class="fa-solid fa-plus"></i>Registrar usuario
         </button>
     </div>
@@ -26,13 +26,15 @@
       <td><span *ngFor="let rol of usuario.roles" class="badge bg-primary">{{tranformarRol(rol)}}</span></td>
       <td>
         <span>
+          <button class="btn btn-outline-primary btn-sm me-1 ms-1" (click)="editarUsuario(usuario)">
+                <i class="fa-solid fa-pen"></i>Actualizar
+            </button>
+
             <button class="btn btn-danger btn-sm me-1 ms-1" (click)="eliminarUsuario(usuario.username)">
                 <i class="fa fa-trash"></i>Eliminar
             </button>
 
-            <button class="btn btn-info btn-sm me-1 ms-1" (click)="editarUsuario(usuario)">
-                <i class="fa fa-edit"></i>Actualizar
-            </button>
+            
         </span>
     </td>
     </tr>

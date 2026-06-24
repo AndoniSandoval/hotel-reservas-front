@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <h2>Habitaciones</h2>
     <div class="d-flex justify-content-between mb-3 mt-3">
-        <button class="btn btn-success" (click)="toggleForm()"> 
+        <button class="btn btn-outline-secondary" (click)="toggleForm()"> 
             <i class="fa-solid fa-plus"></i>Registrar habitacion
         </button>
     </div>
@@ -30,7 +30,7 @@
       <td>{{habitacion.fechaActualizacion | date}}</td>
       <td>
         <span>
-          <button class="btn btn-info btn-sm me-1 ms-1" (click)="actualizar(habitacion)">
+          <button class="btn btn-outline-primary btn-sm me-1 ms-1" (click)="actualizar(habitacion)">
                 <i class="fa-solid fa-pen"></i>Actualizar
             </button>
           <button class="btn btn-danger btn-sm me-1 ms-1" (click)="eliminarHabitacion(habitacion.idHabitacion)">
