@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+/* .fondo-hotel {
+  background-image: url('../src/assets/img/fondo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+} */
+
+html, body {
+  min-height: 100%;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, #dbdbdb 30%, white) 0%,
+    color-mix(in srgb, #59646e 30%, white) 60%,
+    color-mix(in srgb, #acbbf7 30%, white) 100%
+  ) fixed;
+}
+
+.app-container{
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 50px;
+}
+
+main{
+    flex-grow: 1;
+}
+
+footer{
+    background-color: #333;
+    color: white;
+    padding: 5px 0;
+    text-align: center;
+
+    position: fixed;
+    bottom: 0;
+    width:100%;
+    z-index: 1000;
+}
