@@ -3,6 +3,7 @@ import { HabitacionRequest, HabitacionResponse } from '../../models/Habitacion.m
 import { HabitacionesService } from '../../services/habitaciones.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { TipoHabitacion } from '../../constants/TipoHabitacion';
 
 declare var bootstrap: any;
 
@@ -20,8 +21,12 @@ habitacionForm: FormGroup;
 habitaciones: HabitacionResponse[]=[];
 @ViewChild('habitacionModalRef') habitacionModalEl!: ElementRef;
 private modalInstance!: any;
-isEditMode:boolean=false;
+idHabitacion:string | null =null;
 selectedHabitacion: HabitacionResponse | null = null;
+tiposHabitacion:string[] = Object.values(TipoHabitacion);
+
+
+
 ngAfterViewInit(): void {
   this.modalInstance = new bootstrap.Modal(this.habitacionModalEl.nativeElement,{keyboard:false});
   this.habitacionModalEl.nativeElement.addEventListener('hidden.bs.modadl',()=> {
@@ -33,7 +38,7 @@ constructor(private fb: FormBuilder,private habitacionServicio:HabitacionesServi
 this.habitacionForm = this.fb.group({
     
     numeroHabitacion:['',[Validators.required, Validators.min(1)]],
-    tipoHabitacion:['',[Validators.required]],
+    tipoHabitacion:[{},[Validators.required]],
     precioNoche:['',[Validators.required,Validators.min(0.01)]],
     capacidad:['',[Validators.min(1),Validators.required]]
   });
@@ -64,7 +69,7 @@ toggleForm():void{
 }
 
 resetForm():void {
-  this.isEditMode =false;
+  this.idHabitacion =null;
   this.habitacionForm.reset();
   this.habitacionForm.get('tipoHabitacion')?.setValue('');
 }
@@ -83,9 +88,18 @@ onSubmit():void {
 
   
   const datoshabitacion: HabitacionRequest = this.habitacionForm.value;
-  if(this.isEditMode && this.selectedHabitacion){
+  if(this.idHabitacion && this.selectedHabitacion){
     ///actualizando
-    //this.habitacionServicio.putHabitaciones(datoshabitacion,)
+    this.habitacionServicio.putHabitaciones(datoshabitacion,this.idHabitacion).subscribe({
+      next: resp=>{
+        const index = this.habitaciones.findIndex(habitacion=> habitacion.idHabitacion === this.idHabitacion);
+        if (index !== -1) {
+        this.habitaciones[index] = resp;
+        this.modalInstance.hide();
+        Swal.fire('Actualizacion correcta','Se actualizo correctamente la habitacion','success');
+      }
+      }
+    });
 
 
   }else{
@@ -118,6 +132,15 @@ eliminarHabitacion(idHabitacion: string): void {
         })
       }
     })
+
+  }
+
+  actualizar(habitacion:HabitacionResponse):void{
+  this.idHabitacion = habitacion.idHabitacion;
+  this.textoModal = 'Actualizar habitacion';
+  this.selectedHabitacion = habitacion;
+  this.habitacionForm.patchValue({ ...habitacion});
+  this.modalInstance.show();
 
   }
 

@@ -30,9 +30,13 @@
       <td>{{habitacion.fechaActualizacion | date}}</td>
       <td>
         <span>
+          <button class="btn btn-info btn-sm me-1 ms-1" (click)="actualizar(habitacion)">
+                <i class="fa-solid fa-pen"></i>Actualizar
+            </button>
           <button class="btn btn-danger btn-sm me-1 ms-1" (click)="eliminarHabitacion(habitacion.idHabitacion)">
                 <i class="fa fa-trash"></i>Eliminar
             </button>
+
 
         </span>
 
@@ -67,9 +71,10 @@
                 <i class="fa-solid fa-hotel"></i>
               </span>
               <div class="form-floating">
-                <input type="text" class="form-control" id="tipoHabitacion" formControlName="tipoHabitacion"
-                  placeholder="Tipo de habitacion" required>
-                <label for="tipoHabitacion">Tipo de habitacion</label>
+                <select class="form-select" formControlName="tipoHabitacion" id="floatingSelect" aria-label="Floating label select example" required>
+              <option *ngFor="let tipo of tiposHabitacion" [value]="tipo"> {{tipo}}</option>
+            </select>
+            <label for="floatingSelect">Tipo de habitacion</label>
               </div>
             </div>
             
