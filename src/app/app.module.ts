@@ -12,6 +12,7 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { FooterComponent } from './components/common/footer/footer.component';
 import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
+import { HabitacionesComponent } from './components/habitaciones/habitaciones.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LoginComponent } from './components/login/login.component';
     UsuariosComponent,
     FooterComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    HabitacionesComponent
   ],
   imports: [
     BrowserModule,

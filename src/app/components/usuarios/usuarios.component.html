@@ -53,12 +53,21 @@
 
       <div class="modal-body">
         <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()" >
-          <div class="mb-3">
-            <label for="username" class="form-label">username</label>
-            <input id="username" type="text" class="form-control" formControlName="username" minlength="5"
-            maxlength="20" placeholder="Ingrese el nombre del usuario">
+          <!-- Inicio bloque -->
+          <div class="mb-4">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fa-solid fa-user"></i>
+              </span>
+              <div class="form-floating">
+                <input type="text" class="form-control" id="username" formControlName="username"
+                  placeholder="Username" required>
+                <label for="username">Username</label>
+              </div>
+            </div>
+            
             <div *ngIf="usuarioForm.get('username')?.invalid && usuarioForm.get('username')?.touched"
-            class="text-dangersmall mt-1">
+            class="text-danger small mt-1">
             <span *ngIf="usuarioForm.get('username')?.errors?.['required']">El username es requerido</span>
 
             <span *ngIf="usuarioForm.get('username')?.errors?.['minlength']">Minimo 5 caracteres</span>
@@ -67,23 +76,34 @@
           
           </div>
           </div>
+          <!-- fin bloque -->
 
-
-          <div class="mb-3">
-            <label for="password" class="form-label">password</label>
-            <input id="password" type="password" class="form-control" formControlName="password" minlength="8"
-            maxlength="20" placeholder="Ingrese el nombre del usuario">
+          <!-- Inicio bloque -->
+          <div class="mb-4">
+            <div class="input-group">
+              <span class="input-group-text">
+                ***
+              </span>
+              <div class="form-floating">
+                <input type="password" class="form-control" id="password" formControlName="password"
+                  placeholder="Password" required>
+                <label for="password">Password</label>
+              </div>
+            </div>
+            
             <div *ngIf="usuarioForm.get('password')?.invalid && usuarioForm.get('password')?.touched"
-            class="text-dangersmall mt-1">
+            class="text-danger small mt-1">
             <span *ngIf="usuarioForm.get('password')?.errors?.['required']">El password es requerido</span>
 
             <span *ngIf="usuarioForm.get('password')?.errors?.['minlength']">Minimo 8 caracteres</span>
           
           </div>
           </div>
+          <!-- fin bloque -->
+           
 
           <div class="mb-3">
-            <label for="roles" class="form-label">roles</label>
+            <label for="roles" class="form-label">Roles</label>
             <select id="roles" class="form-select" formControlName="roles" multiple size="3">
               <option *ngFor="let rol of roles" [value]="rol">{{tranformarRol(rol)}}</option>
             </select>

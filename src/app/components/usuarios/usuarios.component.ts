@@ -105,7 +105,7 @@ tranformarRol(rol:string): string{
       if (result.isConfirmed) {
         this.usuarioService.deleteUsuario(username).subscribe({
           next: () => {
-            this.usuarios.filter(usuario => usuario.username !== username);
+            this.usuarios=this.usuarios.filter(usuario => usuario.username !== username);
             Swal.fire('Eliminado', 'Se elimino el usuario', 'success')
           }, error: (error) => {
             console.error('Error al eliminar usuario', error);
