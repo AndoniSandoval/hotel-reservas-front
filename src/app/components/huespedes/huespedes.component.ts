@@ -20,7 +20,7 @@ export class HuespedesComponent implements OnInit, AfterViewInit {
   textoModal: string = 'Registrar huésped';
   huespedForm: FormGroup;
   huespedes: HuespedResponse[] = [];
-  loading:boolean = false;
+  loading: boolean = false;
 
   @ViewChild('huespedModalRef') huespedModalEl!: ElementRef;
   private modalInstance!: any;
@@ -67,6 +67,7 @@ export class HuespedesComponent implements OnInit, AfterViewInit {
 
   toggleForm(): void {
     this.textoModal = 'Registrar huésped';
+    this.loading = false;
     this.resetForm();
     this.modalInstance.show();
   }
@@ -97,25 +98,32 @@ export class HuespedesComponent implements OnInit, AfterViewInit {
   crearHuesped(huesped: HuespedRequest): void {
     this.loading = true;
     this.huespedService.postHuesped(huesped).subscribe({
-      next: resp => {
-        this.huespedes.push(resp);
+      next: () => {
+        this.loading = false;
+        this.listarHuespedes();
         this.modalInstance.hide();
         Swal.fire('Correcto', 'Huésped registrado correctamente', 'success');
       },
-      error: error => this.manejarError(error)
+      error: error => {
+        this.loading = false;
+        this.manejarError(error);
+      }
     });
   }
 
   actualizarHuesped(huesped: HuespedRequest): void {
+    this.loading = true;
     this.huespedService.putHuesped(huesped, this.idHuesped!).subscribe({
-      next: resp => {
-        const index = this.huespedes.findIndex(h => h.id === this.idHuesped);
-        if (index !== -1) this.huespedes[index] = resp;
-
+      next: () => {
+        this.loading = false;
+        this.listarHuespedes();
         this.modalInstance.hide();
         Swal.fire('Correcto', 'Huésped actualizado correctamente', 'success');
       },
-      error: error => this.manejarError(error)
+      error: error => {
+        this.loading = false;
+        this.manejarError(error);
+      }
     });
   }
 
@@ -132,7 +140,7 @@ export class HuespedesComponent implements OnInit, AfterViewInit {
 
       this.huespedService.deleteHuesped(idHuesped).subscribe({
         next: () => {
-          this.huespedes = this.huespedes.filter(h => h.id !== idHuesped);
+          this.listarHuespedes();
           Swal.fire('Eliminado', 'Huésped eliminado correctamente', 'success');
         },
         error: error => this.manejarError(error)
