@@ -13,6 +13,7 @@ import { FooterComponent } from './components/common/footer/footer.component';
 import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { HabitacionesComponent } from './components/habitaciones/habitaciones.component';
+import { HuespedesComponent } from './components/huespedes/huespedes.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HabitacionesComponent } from './components/habitaciones/habitaciones.co
     FooterComponent,
     NavbarComponent,
     LoginComponent,
-    HabitacionesComponent
+    HabitacionesComponent,
+    HuespedesComponent
   ],
   imports: [
     BrowserModule,
