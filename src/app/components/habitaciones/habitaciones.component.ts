@@ -37,10 +37,10 @@ constructor(private fb: FormBuilder,private habitacionServicio:HabitacionesServi
 
 this.habitacionForm = this.fb.group({
     
-    numeroHabitacion:['',[Validators.required, Validators.min(1)]],
+    numeroHabitacion:['',[Validators.required, Validators.min(1), Validators.max(999)]],
     tipoHabitacion:[{},[Validators.required]],
-    precioNoche:['',[Validators.required,Validators.min(0.01)]],
-    capacidad:['',[Validators.min(1),Validators.required]]
+    precioNoche:['',[Validators.required,Validators.min(0.01), Validators.max(10000)]],
+    capacidad:['',[Validators.min(1),Validators.required, Validators.min(1), Validators.max(10)]]
   });
 }
 

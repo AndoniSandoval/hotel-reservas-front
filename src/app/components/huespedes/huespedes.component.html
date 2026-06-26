@@ -126,28 +126,38 @@
                 <div class="input-group">
                   <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
                   <div class="form-floating">
-                    <input type="email" class="form-control" id="email" formControlName="email" placeholder="Correo electrónico"/>
+                    <input type="email" class="form-control" id="email" formControlName="email" placeholder="Correo electrónico" maxlength="100"/>
                     <label for="email">Correo electrónico</label>
                   </div>
                 </div>
                 <div *ngIf="huespedForm.get('email')?.invalid && huespedForm.get('email')?.touched" class="text-danger small mt-1">
                   <span *ngIf="huespedForm.get('email')?.errors?.['required']">El correo es obligatorio</span>
                   <span *ngIf="huespedForm.get('email')?.errors?.['email']">Formato de correo inválido</span>
+                  <span *ngIf="huespedForm.get('email')?.errors?.['maxlength']">Máximo 100 caracteres</span>
                 </div>
               </div>
 
               <div class="row">
+
                 <!-- Documento -->
                 <div class="mb-4 col-md-6">
                   <div class="input-group">
                     <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
                     <div class="form-floating">
-                      <input type="text" class="form-control" id="documento" formControlName="documento" placeholder="Documento"/>
+                      <input 
+                        type="text" 
+                        class="form-control" 
+                        id="documento" 
+                        formControlName="documento" 
+                        placeholder="Documento"
+                        maxlength="30"
+                      />
                       <label for="documento">Documento</label>
                     </div>
                   </div>
                   <div *ngIf="huespedForm.get('documento')?.invalid && huespedForm.get('documento')?.touched" class="text-danger small mt-1">
                     <span *ngIf="huespedForm.get('documento')?.errors?.['required']">El documento es obligatorio</span>
+                    <span *ngIf="huespedForm.get('documento')?.errors?.['maxlength']">Máximo 30 caracteres</span>
                   </div>
                 </div>
 
@@ -156,12 +166,13 @@
                   <div class="input-group">
                     <span class="input-group-text"><i class="fa-solid fa-earth-americas"></i></span>
                     <div class="form-floating">
-                      <input type="text" class="form-control" id="nacionalidad" formControlName="nacionalidad" placeholder="Nacionalidad"/>
+                      <input type="text" class="form-control" id="nacionalidad" formControlName="nacionalidad" placeholder="Nacionalidad" maxlength="50"/>
                       <label for="nacionalidad">Nacionalidad</label>
                     </div>
                   </div>
                   <div *ngIf="huespedForm.get('nacionalidad')?.invalid && huespedForm.get('nacionalidad')?.touched" class="text-danger small mt-1">
                     <span *ngIf="huespedForm.get('nacionalidad')?.errors?.['required']">La nacionalidad es obligatoria</span>
+                    <span *ngIf="huespedForm.get('nacionalidad')?.errors?.['maxlength']">Máximo 50 caracteres</span>
                   </div>
                 </div>
               </div>
