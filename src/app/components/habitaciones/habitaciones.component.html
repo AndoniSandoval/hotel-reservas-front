@@ -96,7 +96,7 @@
               </span>
               <div class="form-floating">
                 <input type="number" class="form-control" id="numeroHabitacion" formControlName="numeroHabitacion"
-                  placeholder="Número de habitación" required>
+                  placeholder="Número de habitación" required min="1" max="999">
                 <label for="numeroHabitacion">Número de habitación</label>
               </div>
             </div>
@@ -106,6 +106,7 @@
               <span *ngIf="habitacionForm.get('numeroHabitacion')?.errors?.['required']">El numero de habitacion es
                 requerido</span>
               <span *ngIf="habitacionForm.get('numeroHabitacion')?.errors?.['min']">El numero minimo es 1</span>
+              <span *ngIf="habitacionForm.get('numeroHabitacion')?.errors?.['max']">El numero maximo es 999</span>
             </div>
           </div>
           
@@ -119,7 +120,7 @@
               </span>
               <div class="form-floating">
                 <input type="number" class="form-control" id="capacidad" formControlName="capacidad"
-                  placeholder="Capacidad" required>
+                  placeholder="Capacidad" required min="1" max="10">
                 <label for="capacidad">Capacidad</label>
               </div>
             </div>
@@ -129,6 +130,7 @@
               <span *ngIf="habitacionForm.get('capacidad')?.errors?.['required']">La capacidad es
                 requerida</span>
               <span *ngIf="habitacionForm.get('capacidad')?.errors?.['min']">La capacidad minima es 1</span>
+              <span *ngIf="habitacionForm.get('capacidad')?.errors?.['max']">La capacidad maxima es 10</span>
             </div>
           </div>
           <!-- fin bloque -->
@@ -143,7 +145,7 @@
               </span>
               <div class="form-floating">
                 <input type="number" class="form-control" id="precioNoche" formControlName="precioNoche"
-                  placeholder="Precio por noche" required>
+                  placeholder="Precio por noche" required min="0.01" max="10000">
                 <label for="precioNoche">Precio por noche</label>
               </div>
             </div>
@@ -153,6 +155,7 @@
               <span *ngIf="habitacionForm.get('precioNoche')?.errors?.['required']">El precio por noche es
                 requerido</span>
               <span *ngIf="habitacionForm.get('precioNoche')?.errors?.['min']">El precio minimo por noche es 0.01</span>
+              <span *ngIf="habitacionForm.get('precioNoche')?.errors?.['max']">El precio maximo por noche es 10000</span>
             </div>
           </div>
           <!-- fin bloque -->

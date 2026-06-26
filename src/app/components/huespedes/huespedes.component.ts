@@ -36,10 +36,10 @@ export class HuespedesComponent implements OnInit, AfterViewInit {
       nombre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       apellidoPaterno: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       apellidoMaterno: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email], Validators.maxLength(100)],
       telefono: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
-      documento: ['', [Validators.required]],
-      nacionalidad: ['', [Validators.required]]
+      documento: ['', [Validators.required], Validators.maxLength(30)],
+      nacionalidad: ['', [Validators.required], Validators.maxLength(50)]
     });
   }
 
